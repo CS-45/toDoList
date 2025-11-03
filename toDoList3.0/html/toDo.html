@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+  <!-- headersection -->
+  <div id="task-section">
+    <header id="headerid " class="headerproperties gap-4 py-3 px-4">
+      <h3>Welcome, <span id="userid"></span></h3>
+      <button class="btn btn-danger " id="logoutbtn">logout</button>
+    </header>
+
+
+    <!-- entertaskbody -->
+    <div class="taskbody container-fluid">
+      <!-- <h2 class="text-center py-2">ToDo Task</h2> -->
+      <div class="container mt-2 taskcontainer shadow-lg  text-align-center py-4">
+
+        <!--===================== modelsections===================== -->
+
+        <div class="row">
+          <!-- ++++++++++++++++Add Task Modal Trigger+++++++++++++++++++++ -->
+          <div class="col-4 text-center py-2">
+            <span><b>AddTask</b></span>
+            <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal"
+              data-bs-target="#addTaskModal"><i class="fa-solid fa-plus w-2"></i>
+            </button>
+
+            <!-- Add Task Modal -->
+            <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container p-4 rounded shadow     mt-4" style="max-width: 500px;">
+                      <!-- Task Input -->
+                      <div class="mb-1">
+                        <label for="taskNameInput" class="form-label fw-semibold">Enter Task</label>
+                        <input type="text" id="inputtaskid" class="form-control" placeholder="Enter your task" />
+                      </div>
+
+                      <!-- Date & Time Picker -->
+                      <div class="mb-3">
+                        <label for="taskDateTime" class="form-label fw-semibold">Select Date & Time</label>
+                        <input type="datetime-local" id="taskDateTime" class="form-control" />
+                      </div>
+
+                      <!-- Status Dropdown -->
+                      <div class="mb-3">
+                        <label for="addStatus" class="form-label fw-semibold">Select Status</label>
+                        <select id="addStatus" class="form-select">
+                          <option value="pending" selected>Pending</option>
+                          <option value="done">Done</option>
+                        </select>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="addTaskBtn">
+                          Add Task
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======================Filter Modal Trigger========================== -->
+          <div class="col-4 text-center py-2">
+            <span><b>Sort By</b></span>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+              data-bs-target="#addTaskModal">
+              <i class="fa-solid fa-sort"></i>
+            </button>
+          </div>
+
+          <!-- ======================Filter Modal Trigger========================== -->
+          <div class="col-4 text-center py-2">
+            <span><b>Filter</b></span>
+            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#filterModal"><i
+                class="fa-solid fa-filter"></i>
+            </button>
+
+            <!-- ++++++++++++++++++=Filter Modal =+++++++++++++++++++++-->
+            <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="filterModalLabel">Search Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container p-4 rounded shadow bg-light mt-4" style="max-width: 500px;">
+                      <!-- Select From DateTime -->
+                      <div class="mb-3">
+                        <label for="filterFrom" class="form-label fw-semibold">Select From</label>
+                        <input type="datetime-local" id="filterFrom" class="form-control" />
+                      </div>
+
+                      <!-- Select To DateTime -->
+                      <div class="mb-3">
+                        <label for="filterTo" class="form-label fw-semibold">Select To</label>
+                        <input type="datetime-local" id="filterTo" class="form-control" />
+                      </div>
+
+                      <!-- Status Dropdown -->
+                      <div class="mb-3">
+                        <label for="filterStatus" class="form-label fw-semibold">Select Status</label>
+                        <select id="filterStatus" class="form-select">
+                          <option value="pending">Pending</option>
+                          <option value="done">Done</option>
+                        </select>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="d-flex justify-content-end gap-2">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="searchTaskBtn" onclick="searchTask()">
+                          Search Task
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  </div>
+
+  <!-- tablesection -->
+  <div class="container py-4 px-4 ">
+    <table class=" table table-dark table-striped ">
+      <thead class="table-dark ">
+        <tr >
+          <th>ID</th>
+          <th>TaskName</th>
+          <th>Date & Time</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="taskbody" >
+
+
+  </div>
+
+  </tbody>
+  </table>
+  <div id="pagination" style="text-align: center; margin-top: 10px;"></div>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/javscript/toDo.js"></script>
+
+</html>
